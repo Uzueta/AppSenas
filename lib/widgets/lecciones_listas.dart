@@ -39,6 +39,39 @@ class LeccionesLista {
     Imagenes(imagePath: 'assets/abecedario/y.png', description: 'Y'),
     Imagenes(imagePath: 'assets/abecedario/z.png', description: 'Z'),
   ];
+
+  List<Imagenes> numeros = [
+    Imagenes(imagePath: 'assets/numeros/01.png', description: '1'),
+    Imagenes(imagePath: 'assets/numeros/02.png', description: '2'),
+    Imagenes(imagePath: 'assets/numeros/03.png', description: '3'),
+    Imagenes(imagePath: 'assets/numeros/04.png', description: '4'),
+    Imagenes(imagePath: 'assets/numeros/05.png', description: '5'),
+    Imagenes(imagePath: 'assets/numeros/06.png', description: '6'),
+    Imagenes(imagePath: 'assets/numeros/07.png', description: '7'),
+    Imagenes(imagePath: 'assets/numeros/08.png', description: '8'),
+    Imagenes(imagePath: 'assets/numeros/09.png', description: '9'),
+    Imagenes(imagePath: 'assets/numeros/10.png', description: '10'),
+    Imagenes(imagePath: 'assets/numeros/11.png', description: '11'),
+    Imagenes(imagePath: 'assets/numeros/12.png', description: '12'),
+    Imagenes(imagePath: 'assets/numeros/13.png', description: '13'),
+    Imagenes(imagePath: 'assets/numeros/14.png', description: '14'),
+    Imagenes(imagePath: 'assets/numeros/15.png', description: '15'),
+    Imagenes(imagePath: 'assets/numeros/16.png', description: '16'),
+    Imagenes(imagePath: 'assets/numeros/17.png', description: '17'),
+    Imagenes(imagePath: 'assets/numeros/18.png', description: '18'),
+    Imagenes(imagePath: 'assets/numeros/19.png', description: '19'),
+    Imagenes(imagePath: 'assets/numeros/20.png', description: '20'),
+    Imagenes(imagePath: 'assets/numeros/30.png', description: '30'),
+    Imagenes(imagePath: 'assets/numeros/40.png', description: '40'),
+    Imagenes(imagePath: 'assets/numeros/50.png', description: '50'),
+    Imagenes(imagePath: 'assets/numeros/60.png', description: '60'),
+    Imagenes(imagePath: 'assets/numeros/70.png', description: '70'),
+    Imagenes(imagePath: 'assets/numeros/80.png', description: '80'),
+    Imagenes(imagePath: 'assets/numeros/90.png', description: '90'),
+    Imagenes(imagePath: 'assets/numeros/100.png', description: '100'),
+    Imagenes(imagePath: 'assets/numeros/1000.png', description: '1,000'),
+    Imagenes(imagePath: 'assets/numeros/1m.png', description: '1,000,000'),
+  ];
 }
 
 class Imagenes {

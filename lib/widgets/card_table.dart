@@ -20,7 +20,10 @@ class CardTable extends StatelessWidget {
           ),
           'Números',
           'assets/numeros.png',
-          BasicDesignScreen(),
+          PantallaLeccion(
+            id: 2,
+            titulo: 'Números',
+          ),
         ),
         buildTableRow('Días', 'assets/dias.png', Pagina02(), 'Meses',
             'assets/meses.png', Container()),
