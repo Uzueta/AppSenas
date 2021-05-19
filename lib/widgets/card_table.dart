@@ -12,18 +12,22 @@ class CardTable extends StatelessWidget {
     return Table(
       children: [
         buildTableRow(
-            'Naturalezas',
-            'assets/naturaleza.png',
-            BasicDesignScreen(),
-            'Abecedario',
-            'assets/abc.png',
-            ScrollScreen()),
-        buildTableRow('Trabajos', 'assets/jobs.png', Pagina02(), 'Saludos',
-            'assets/saludos.png', Container()),
-        buildTableRow('Entertainment', 'assets/ola.png', Container(), 'Grocery',
-            'assets/morfin.png', PantallaLeccion(titulo: 'Grocery')),
-        buildTableRow('General', 'assets/morfin.png', Container(), 'Transport',
-            'assets/jobs.png', Container()),
+          'Abecedario',
+          'assets/abc.png',
+          PantallaLeccion(
+            titulo: 'Abecedario',
+            id: 1,
+          ),
+          'Números',
+          'assets/numeros.png',
+          BasicDesignScreen(),
+        ),
+        buildTableRow('Días', 'assets/dias.png', Pagina02(), 'Meses',
+            'assets/meses.png', Container()),
+        buildTableRow('Colores', 'assets/colores.png', Container(), 'Tiempo',
+            'assets/tiempo.png', Container()),
+        buildTableRow('Animales 1', 'assets/animales1.png', Container(),
+            'Animales 2', 'assets/animales2.png', Container()),
       ],
     );
   }
@@ -73,10 +77,10 @@ class _SigleCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(13),
               child: Image.asset(
                 ruta,
-                height: 120,
+                height: 110,
                 fit: BoxFit.cover,
               ),
             ),
