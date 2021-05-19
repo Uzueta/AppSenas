@@ -72,6 +72,16 @@ class LeccionesLista {
     Imagenes(imagePath: 'assets/numeros/1000.png', description: '1,000'),
     Imagenes(imagePath: 'assets/numeros/1m.png', description: '1,000,000'),
   ];
+
+  List<Imagenes> dias = [
+    Imagenes(imagePath: 'assets/dias/lunes.png', description: 'Lunes'),
+    Imagenes(imagePath: 'assets/dias/martes.png', description: 'Martes'),
+    Imagenes(imagePath: 'assets/dias/miercoles.png', description: 'Miércoles'),
+    Imagenes(imagePath: 'assets/dias/jueves.png', description: 'Jueves'),
+    Imagenes(imagePath: 'assets/dias/viernes.png', description: 'Viernes'),
+    Imagenes(imagePath: 'assets/dias/sabado.png', description: 'Sábado'),
+    Imagenes(imagePath: 'assets/dias/domingo.png', description: 'Domingo'),
+  ];
 }
 
 class Imagenes {

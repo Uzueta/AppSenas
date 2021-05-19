@@ -1,9 +1,5 @@
 import 'dart:ui';
-
-import 'package:disenos/screens/basic_design.dart';
 import 'package:disenos/screens/lecciones.dart';
-import 'package:disenos/screens/pagina.dart';
-import 'package:disenos/screens/scroll_design.dart';
 import 'package:flutter/material.dart';
 
 class CardTable extends StatelessWidget {
@@ -25,12 +21,48 @@ class CardTable extends StatelessWidget {
             titulo: 'Números',
           ),
         ),
-        buildTableRow('Días', 'assets/dias.png', Pagina02(), 'Meses',
-            'assets/meses.png', Container()),
-        buildTableRow('Colores', 'assets/colores.png', Container(), 'Tiempo',
-            'assets/tiempo.png', Container()),
-        buildTableRow('Animales 1', 'assets/animales1.png', Container(),
-            'Animales 2', 'assets/animales2.png', Container()),
+        buildTableRow(
+          'Días',
+          'assets/dias.png',
+          PantallaLeccion(
+            id: 3,
+            titulo: 'Días',
+          ),
+          'Meses',
+          'assets/meses.png',
+          PantallaLeccion(
+            id: 0,
+            titulo: 'Meses',
+          ),
+        ),
+        buildTableRow(
+          'Colores',
+          'assets/colores.png',
+          PantallaLeccion(
+            id: 0,
+            titulo: 'Colores',
+          ),
+          'Tiempo',
+          'assets/tiempo.png',
+          PantallaLeccion(
+            id: 0,
+            titulo: 'Tiempo',
+          ),
+        ),
+        buildTableRow(
+          'Animales 1',
+          'assets/animales1.png',
+          PantallaLeccion(
+            id: 0,
+            titulo: 'Animales 1',
+          ),
+          'Animales 2',
+          'assets/animales2.png',
+          PantallaLeccion(
+            id: 0,
+            titulo: 'Animales 2',
+          ),
+        ),
       ],
     );
   }
