@@ -67,10 +67,15 @@ class Leccion extends StatelessWidget {
         itemBuilder: (context, index) {
           return Column(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.asset(
-                  lista[index].imagePath,
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(width: 2, color: Color(0xFF303030))),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(
+                    lista[index].imagePath,
+                  ),
                 ),
               ),
               Container(
