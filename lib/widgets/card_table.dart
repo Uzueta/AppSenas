@@ -76,7 +76,7 @@ class _SigleCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               child: Image.asset(
                 ruta,
-                width: 150,
+                height: 120,
                 fit: BoxFit.cover,
               ),
             ),
