@@ -1,6 +1,6 @@
-# disenos
+# AppSenas
 
-A new Flutter project.
+Proyecto de Flutter hecho para la materia de Taller de Investigación II.
 
 ## Getting Started
 

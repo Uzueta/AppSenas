@@ -73,8 +73,10 @@ class Leccion extends StatelessWidget {
                     border: Border.all(width: 2, color: Color(0xFF303030))),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: Image.asset(
-                    lista[index].imagePath,
+                  child: Image(
+                    image: AssetImage(lista[index].imagePath),
+                    height: 200,
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
