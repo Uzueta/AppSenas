@@ -8,45 +8,25 @@ class PantallaLeccion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(this.titulo)),
-        body: Leccion(
-            // palabra: 'A',
-            // ruta: 'assets/jobs.png',
-            ));
+      appBar: AppBar(title: Text(this.titulo)),
+      body: Column(
+        children: [
+          Container(
+              padding: EdgeInsets.all(30),
+              child: Text(
+                "Observe la imagen y ponga atención a la posición de los dedos, deslice para pasar a la siguiente imagen de la categoría.",
+                textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18, fontFamily: 'Verdana'),
+              )),
+          Leccion(
+              // palabra: 'A',
+              // ruta: 'assets/jobs.png',
+              ),
+        ],
+      ),
+    );
   }
 }
-
-// class Leccion extends StatelessWidget {
-//   final String palabra;
-//   final String ruta;
-
-//   const Leccion({Key? key, required this.palabra, required this.ruta})
-//       : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Container(
-//           padding: EdgeInsets.all(40),
-//           child: Column(children: [
-//             Container(
-//               padding: EdgeInsets.only(bottom: 20),
-//               child: Text(
-//                   'Observa la imagen con atención y practícala, cuando termines pasa a la siguiente'),
-//             ),
-//             Image.asset(ruta),
-//             Container(
-//               padding: EdgeInsets.all(40),
-//               child: Text(
-//                 this.palabra,
-//                 textAlign: TextAlign.left,
-//               ),
-//             ),
-//             // ElevatedButton(onPressed: () {}, child: Text('Siguiente'))
-//           ])),
-//     );
-//   }
-// }
 
 class Leccion extends StatelessWidget {
   // const Leccion({Key key}) : super(key: key);
@@ -54,7 +34,8 @@ class Leccion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(5),
+      height: 640,
+      padding: EdgeInsets.only(top: 0, bottom: 30, left: 30, right: 30),
       child: PageView.builder(
         physics: BouncingScrollPhysics(),
         itemCount: imagenes.length,
@@ -64,9 +45,12 @@ class Leccion extends StatelessWidget {
               Image.asset(
                 imagenes[index].imagePath,
               ),
-              Text(
-                imagenes[index].description,
-                textAlign: TextAlign.center,
+              Container(
+                padding: EdgeInsets.all(30),
+                child: Text(
+                  imagenes[index].description,
+                  textAlign: TextAlign.center,
+                ),
               )
             ],
           );
@@ -85,7 +69,7 @@ class Leccion extends StatelessWidget {
 // }
 
 List<Imagenes> imagenes = [
-  Imagenes(imagePath: 'assets/abc.png', description: 'ABC'),
+  Imagenes(imagePath: 'assets/a.png', description: 'ABC'),
   Imagenes(imagePath: 'assets/jobs.png', description: 'jobs'),
   Imagenes(imagePath: 'assets/ola.png', description: 'landscape'),
   Imagenes(imagePath: 'assets/morfin.png', description: 'morfin'),
@@ -101,10 +85,3 @@ class Imagenes {
 
   Imagenes({required this.imagePath, required this.description});
 }
-// Widget botonSiguiente(){
-//   return ElevatedButton(onPressed: onPressed, child: child)
-// }
-
-// Widget botonRepaso(){
-//   return ElevatedButton(onPressed: onPressed, child: child)
-// }
