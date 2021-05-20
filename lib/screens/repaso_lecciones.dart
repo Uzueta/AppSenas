@@ -2,6 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+var respuestas;
+// TextEditingController respuesta = new TextEditingController();
+
 class Repaso extends StatelessWidget {
   final List lista;
   final String titulo;
@@ -10,25 +13,24 @@ class Repaso extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    respuestas = new List<TextEditingController>.generate(
+        lista.length, (i) => new TextEditingController());
+
     return Scaffold(
       appBar: AppBar(title: Text("Repaso de ${this.titulo.toLowerCase()}")),
       body: Column(
         children: [
           RepasoPageView(
             lista: this.lista,
-            // palabra: 'A',
-            // ruta: 'assets/jobs.png',
           ),
-          Container(
-              padding: EdgeInsets.only(top: 70),
-              child: ConstrainedBox(
-                  constraints: BoxConstraints.tightFor(height: 40, width: 120),
-                  child: ElevatedButton(
-                      onPressed: () => {
-                            // _mostrarAlerta(context),
-                          },
-                      child:
-                          Text("Continuar", style: TextStyle(fontSize: 17))))),
+          // Container(
+          //     padding: EdgeInsets.only(top: 70),
+          //     child: ConstrainedBox(
+          //         constraints: BoxConstraints.tightFor(height: 40, width: 120),
+          //         child: ElevatedButton(
+          //             onPressed: () => {print(respuestas.text)},
+          //             child:
+          //                 Text("Continuar", style: TextStyle(fontSize: 17))))),
         ],
       ),
     );
@@ -48,8 +50,11 @@ class RepasoPageView extends StatelessWidget {
     final _screenZise = MediaQuery.of(context).size.height;
     List listaShuffle = new List.from(lista);
     shuffle(listaShuffle);
+
+    var visible = false;
+
     return Container(
-      height: _screenZise * 0.5,
+      height: _screenZise * 0.8,
       padding: EdgeInsets.all(0),
       child: PageView.builder(
         physics: BouncingScrollPhysics(),
@@ -79,12 +84,61 @@ class RepasoPageView extends StatelessWidget {
                   style: TextStyle(fontSize: 24),
                 ),
               ),
+              Container(
+                  padding: EdgeInsets.all(30),
+                  child: TextField(
+                      controller: respuestas[index],
+                      decoration: InputDecoration(
+                          // enabled: _isEnabled,
+                          // filled: true,
+                          // fillColor: fillColor,
+                          border: OutlineInputBorder(),
+                          hintText: 'Ingrese su respuesta'))),
+              Visibility(
+                visible: visible,
+                child: Text("prueba"),
+              ),
+              Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.only(left: 30),
+                  child: ConstrainedBox(
+                      constraints:
+                          BoxConstraints.tightFor(height: 50, width: 210),
+                      child: ElevatedButton(
+                          onPressed: () => {
+                                print(respuestas[index].text),
+                                checarRespuesta(respuestas[index].text, index,
+                                    listaShuffle),
+                              },
+                          child: Text("Comprobar respuesta",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 17)))))
             ],
           );
         },
       ),
     );
   }
+}
+
+void checarRespuesta(String respuesta, int index, List<dynamic> lista) {
+  if (respuesta.toLowerCase() ==
+      lista[index].description.toString().toLowerCase()) {
+    print("RESPUESTA CORRECTA");
+  } else {
+    print("RESPUESTA INCORRECTA");
+  }
+}
+
+TextField caja(int index) {
+  TextField caja = new TextField(
+      controller: respuestas[index],
+      decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.red,
+          border: OutlineInputBorder(),
+          hintText: 'Ingrese su respuesta'));
+  return caja;
 }
 
 List shuffle(List items) {
