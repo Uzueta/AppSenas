@@ -82,6 +82,78 @@ class LeccionesLista {
     Imagenes(imagePath: 'assets/dias/sabado.png', description: 'Sábado'),
     Imagenes(imagePath: 'assets/dias/domingo.png', description: 'Domingo'),
   ];
+
+  List<Imagenes> meses = [
+    Imagenes(imagePath: 'assets/meses/enero.png', description: 'Enero'),
+    Imagenes(imagePath: 'assets/meses/febrero.png', description: 'Febrero'),
+    Imagenes(imagePath: 'assets/meses/marzo.png', description: 'Marzo'),
+    Imagenes(imagePath: 'assets/meses/abril.png', description: 'Abril'),
+    Imagenes(imagePath: 'assets/meses/mayo.png', description: 'Mayo'),
+    Imagenes(imagePath: 'assets/meses/junio.png', description: 'Junio'),
+    Imagenes(imagePath: 'assets/meses/julio.png', description: 'Julio'),
+    Imagenes(imagePath: 'assets/meses/agosto.png', description: 'Agosto'),
+    Imagenes(
+        imagePath: 'assets/meses/septiembre.png', description: 'Septiembre'),
+    Imagenes(imagePath: 'assets/meses/octubre.png', description: 'Octubre'),
+    Imagenes(imagePath: 'assets/meses/noviembre.png', description: 'Noviembre'),
+    Imagenes(imagePath: 'assets/meses/diciembre.png', description: 'Diciembre'),
+  ];
+
+  List<Imagenes> tiempos = [
+    Imagenes(imagePath: 'assets/tiempos/hoy.png', description: 'Hoy'),
+    Imagenes(imagePath: 'assets/tiempos/ayer.png', description: 'Ayer'),
+    Imagenes(imagePath: 'assets/tiempos/manana.png', description: 'Mañana'),
+    Imagenes(imagePath: 'assets/tiempos/ahora.png', description: 'Ahora'),
+    Imagenes(imagePath: 'assets/tiempos/pasado.png', description: 'Pasado'),
+    Imagenes(imagePath: 'assets/tiempos/futuro.png', description: 'Futuro'),
+    Imagenes(imagePath: 'assets/tiempos/ahorita.png', description: 'Ahorita'),
+  ];
+
+  List<Imagenes> animales1 = [
+    Imagenes(imagePath: 'assets/animales1/aguila.png', description: 'Águila'),
+    Imagenes(imagePath: 'assets/animales1/alacran.png', description: 'Alacrán'),
+    Imagenes(imagePath: 'assets/animales1/animal.png', description: 'Animal'),
+    Imagenes(imagePath: 'assets/animales1/araña.png', description: 'Araña'),
+    Imagenes(imagePath: 'assets/animales1/borrego.png', description: 'Borrego'),
+    Imagenes(imagePath: 'assets/animales1/buho.png', description: 'Búho'),
+    Imagenes(imagePath: 'assets/animales1/burro.png', description: 'Burro'),
+    Imagenes(imagePath: 'assets/animales1/caballo.png', description: 'Caballo'),
+    Imagenes(imagePath: 'assets/animales1/cabra.png', description: 'Cabra'),
+    Imagenes(imagePath: 'assets/animales1/camaron.png', description: 'Camarón'),
+    Imagenes(imagePath: 'assets/animales1/camello.png', description: 'Camello'),
+    Imagenes(imagePath: 'assets/animales1/caracol.png', description: 'Caracol'),
+    Imagenes(imagePath: 'assets/animales1/cebra.png', description: 'Cebra'),
+    Imagenes(imagePath: 'assets/animales1/chango.png', description: 'Chango'),
+    Imagenes(imagePath: 'assets/animales1/cisne.png', description: 'Cisme'),
+    Imagenes(imagePath: 'assets/animales1/cochino.png', description: 'Cochino'),
+    Imagenes(
+        imagePath: 'assets/animales1/cocodrilo.png', description: 'Cocodrilo'),
+    Imagenes(imagePath: 'assets/animales1/conejo.png', description: 'Conejo'),
+    Imagenes(
+        imagePath: 'assets/animales1/elefante.png', description: 'Elefante'),
+    Imagenes(imagePath: 'assets/animales1/foca.png', description: 'Foca'),
+    Imagenes(imagePath: 'assets/animales1/gallo.png', description: 'Gallo'),
+    Imagenes(imagePath: 'assets/animales1/gorila.png', description: 'Gorila'),
+    Imagenes(imagePath: 'assets/animales1/gusano.png', description: 'Gusano'),
+  ];
+
+  List<Imagenes> animales2 = [
+    Imagenes(
+        imagePath: 'assets/animales 2/hipopotamo.png',
+        description: 'Hipopótamo'),
+    Imagenes(imagePath: 'assets/animales 2/jabali.png', description: 'Jabalí'),
+    Imagenes(imagePath: 'assets/animales 2/lobo.png', description: 'Lobo'),
+    Imagenes(imagePath: 'assets/animales 2/oso.png', description: 'Oso'),
+    Imagenes(imagePath: 'assets/animales 2/pajaro.png', description: 'Pájaro'),
+    Imagenes(imagePath: 'assets/animales 2/perico.png', description: 'Perico'),
+    Imagenes(imagePath: 'assets/animales 2/perro.png', description: 'Perro'),
+    Imagenes(imagePath: 'assets/animales 2/pez.png', description: 'Pez'),
+    Imagenes(
+        imagePath: 'assets/animales 2/rinoceronte.png',
+        description: 'Rinoceronte'),
+    Imagenes(imagePath: 'assets/animales 2/vaca.png', description: 'Vaca'),
+    Imagenes(imagePath: 'assets/animales 2/vibora.png', description: 'Vibora'),
+  ];
 }
 
 class Imagenes {

@@ -1,4 +1,4 @@
-import 'package:disenos/widgets/lecciones_listas.dart';
+import 'package:disenos/models/lecciones_listas.dart';
 import 'package:flutter/material.dart';
 
 class PantallaLeccion extends StatelessWidget {
@@ -21,6 +21,22 @@ class PantallaLeccion extends StatelessWidget {
         break;
       case 3:
         lista = listas.dias;
+        break;
+      case 4:
+        lista = listas.meses;
+        break;
+      //Lista de colores
+      case 5:
+        lista = listas.imagenes;
+        break;
+      case 6:
+        lista = listas.tiempos;
+        break;
+      case 7:
+        lista = listas.animales1;
+        break;
+      case 8:
+        lista = listas.animales2;
         break;
       default:
         lista = listas.imagenes;
@@ -58,8 +74,9 @@ class Leccion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _screenZise = MediaQuery.of(context).size.height;
     return Container(
-      height: 640,
+      height: _screenZise * 0.5,
       padding: EdgeInsets.only(top: 0, bottom: 30, left: 30, right: 30),
       child: PageView.builder(
         physics: BouncingScrollPhysics(),

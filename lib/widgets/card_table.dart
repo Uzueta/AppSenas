@@ -31,7 +31,7 @@ class CardTable extends StatelessWidget {
           'Meses',
           'assets/meses.png',
           PantallaLeccion(
-            id: 0,
+            id: 4,
             titulo: 'Meses',
           ),
         ),
@@ -39,13 +39,13 @@ class CardTable extends StatelessWidget {
           'Colores',
           'assets/colores.png',
           PantallaLeccion(
-            id: 0,
+            id: 5,
             titulo: 'Colores',
           ),
           'Tiempo',
           'assets/tiempo.png',
           PantallaLeccion(
-            id: 0,
+            id: 6,
             titulo: 'Tiempo',
           ),
         ),
@@ -53,13 +53,13 @@ class CardTable extends StatelessWidget {
           'Animales 1',
           'assets/animales1.png',
           PantallaLeccion(
-            id: 0,
+            id: 7,
             titulo: 'Animales 1',
           ),
           'Animales 2',
           'assets/animales2.png',
           PantallaLeccion(
-            id: 0,
+            id: 8,
             titulo: 'Animales 2',
           ),
         ),
