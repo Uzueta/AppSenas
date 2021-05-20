@@ -1,6 +1,9 @@
 import 'package:disenos/models/lecciones_listas.dart';
+import 'package:disenos/screens/repaso_lecciones.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+LeccionesLista listas = LeccionesLista();
+List lista = listas.imagenes;
 
 class PantallaLeccion extends StatelessWidget {
   final String titulo;
@@ -11,8 +14,6 @@ class PantallaLeccion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LeccionesLista listas = LeccionesLista();
-    List lista = listas.imagenes;
     switch (id) {
       case 1:
         lista = listas.abc;
@@ -58,10 +59,55 @@ class PantallaLeccion extends StatelessWidget {
             // palabra: 'A',
             // ruta: 'assets/jobs.png',
           ),
+          Container(
+              padding: EdgeInsets.only(top: 70),
+              child: ConstrainedBox(
+                  constraints: BoxConstraints.tightFor(height: 40, width: 120),
+                  child: ElevatedButton(
+                      onPressed: () => {
+                            _mostrarAlerta(context, this.titulo),
+                          },
+                      child:
+                          Text("Continuar", style: TextStyle(fontSize: 17))))),
         ],
       ),
     );
   }
+}
+
+void _mostrarAlerta(BuildContext context, String titulo) {
+  showDialog(
+    context: context,
+    barrierDismissible: true,
+    builder: (context) {
+      return AlertDialog(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        title: Text('¡Espera!'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text('¿Ya viste todas las imagenes y deseas realizar un repaso?'),
+            // FlutterLogo(size: 100.0)
+          ],
+        ),
+        actions: <Widget>[
+          TextButton(
+              onPressed: () => Navigator.of(context).pop(), child: Text('No')),
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            Repaso(titulo: titulo, lista: lista)));
+              },
+              child: Text('Si'))
+        ],
+      );
+    },
+  );
 }
 
 class Leccion extends StatelessWidget {
@@ -76,8 +122,8 @@ class Leccion extends StatelessWidget {
   Widget build(BuildContext context) {
     final _screenZise = MediaQuery.of(context).size.height;
     return Container(
-      height: _screenZise * 0.7,
-      padding: EdgeInsets.only(top: 0, bottom: 30, left: 30, right: 30),
+      height: _screenZise * 0.5,
+      padding: EdgeInsets.all(0),
       child: PageView.builder(
         physics: BouncingScrollPhysics(),
         itemCount: lista.length,
@@ -98,7 +144,7 @@ class Leccion extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(50),
+                padding: EdgeInsets.only(top: 30),
                 child: Text(
                   lista[index].description,
                   textAlign: TextAlign.center,
@@ -112,51 +158,3 @@ class Leccion extends StatelessWidget {
     );
   }
 }
-
-// List<Imagenes> imagenes = [
-//   Imagenes(imagePath: 'assets/a.png', description: 'ABC'),
-//   Imagenes(imagePath: 'assets/jobs.png', description: 'jobs'),
-//   Imagenes(imagePath: 'assets/ola.png', description: 'landscape'),
-//   Imagenes(imagePath: 'assets/morfin.png', description: 'morfin'),
-//   Imagenes(imagePath: 'assets/naturaleza.png', description: 'naturaleza'),
-//   Imagenes(imagePath: 'assets/ola.png', description: 'ola'),
-//   Imagenes(imagePath: 'assets/saludos.png', description: 'saludos'),
-//   Imagenes(imagePath: 'assets/ola.png', description: 'scroll-1'),
-// ];
-
-// List<Imagenes> abc = [
-//   Imagenes(imagePath: 'assets/abecedario/a.png', description: 'A'),
-//   Imagenes(imagePath: 'assets/abecedario/b.png', description: 'B'),
-//   Imagenes(imagePath: 'assets/abecedario/c.png', description: 'C'),
-//   Imagenes(imagePath: 'assets/abecedario/d.png', description: 'D'),
-//   Imagenes(imagePath: 'assets/abecedario/e.png', description: 'E'),
-//   Imagenes(imagePath: 'assets/abecedario/f.png', description: 'F'),
-//   Imagenes(imagePath: 'assets/abecedario/g.png', description: 'G'),
-//   Imagenes(imagePath: 'assets/abecedario/h.png', description: 'H'),
-//   Imagenes(imagePath: 'assets/abecedario/i.png', description: 'I'),
-//   Imagenes(imagePath: 'assets/abecedario/j.png', description: 'J'),
-//   Imagenes(imagePath: 'assets/abecedario/k.png', description: 'K'),
-//   Imagenes(imagePath: 'assets/abecedario/l.png', description: 'L'),
-//   Imagenes(imagePath: 'assets/abecedario/m.png', description: 'M'),
-//   Imagenes(imagePath: 'assets/abecedario/n.png', description: 'N'),
-//   Imagenes(imagePath: 'assets/abecedario/ni.png', description: 'Ñ'),
-//   Imagenes(imagePath: 'assets/abecedario/o.png', description: 'O'),
-//   Imagenes(imagePath: 'assets/abecedario/p.png', description: 'P'),
-//   Imagenes(imagePath: 'assets/abecedario/q.png', description: 'Q'),
-//   Imagenes(imagePath: 'assets/abecedario/r.png', description: 'R'),
-//   Imagenes(imagePath: 'assets/abecedario/s.png', description: 'S'),
-//   Imagenes(imagePath: 'assets/abecedario/t.png', description: 'T'),
-//   Imagenes(imagePath: 'assets/abecedario/u.png', description: 'U'),
-//   Imagenes(imagePath: 'assets/abecedario/v.png', description: 'V'),
-//   Imagenes(imagePath: 'assets/abecedario/w.png', description: 'W'),
-//   Imagenes(imagePath: 'assets/abecedario/x.png', description: 'X'),
-//   Imagenes(imagePath: 'assets/abecedario/y.png', description: 'Y'),
-//   Imagenes(imagePath: 'assets/abecedario/z.png', description: 'Z'),
-// ];
-
-// class Imagenes {
-//   String imagePath;
-//   String description;
-
-//   Imagenes({required this.imagePath, required this.description});
-// }
