@@ -20,7 +20,7 @@ class Repaso extends StatelessWidget {
       appBar: AppBar(title: Text("Repaso de ${this.titulo.toLowerCase()}")),
       body: Column(
         children: [
-          RepasoView(
+          RepasoPageView(
             lista: this.lista,
           ),
           // Container(
@@ -37,42 +37,21 @@ class Repaso extends StatelessWidget {
   }
 }
 
-class RepasoView extends StatefulWidget {
+class RepasoPageView extends StatelessWidget {
   final List lista;
 
-  RepasoView({Key? key, required this.lista}) : super(key: key);
-
-  @override
-  _RepasoViewState createState() => _RepasoViewState();
-}
-
-late List listaShuffle;
-
-class _RepasoViewState extends State<RepasoView> {
-  @mustCallSuper
-  void initState() {
-    listaShuffle = new List.from(widget.lista);
-    shuffle(listaShuffle);
-  }
-
-  // bool _visible = false;
-  Color _fillColor = Colors.yellow;
-  bool _flag = false;
-
-  // var textfields =
-  //     new List<TextField>.generate(listaShuffle.length, (i) => new TextField());
-
-  var colores =
-      new List<Color>.generate(listaShuffle.length, (i) => Colors.yellow);
-
-  var flags = new List<bool>.generate(listaShuffle.length, (i) => false);
+  const RepasoPageView({
+    Key? key,
+    required this.lista,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final _screenZise = MediaQuery.of(context).size.height;
+    List listaShuffle = new List.from(lista);
+    shuffle(listaShuffle);
 
-    // List listaShuffle = new List.from(widget.lista);
-    // shuffle(listaShuffle);
+    var visible = false;
 
     return Container(
       height: _screenZise * 0.8,
@@ -100,6 +79,7 @@ class _RepasoViewState extends State<RepasoView> {
                 padding: EdgeInsets.only(top: 30),
                 child: Text(
                   "¿A que palabra pertenece esta seña?",
+                  // lista[index].description,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 24),
                 ),
@@ -109,11 +89,15 @@ class _RepasoViewState extends State<RepasoView> {
                   child: TextField(
                       controller: respuestas[index],
                       decoration: InputDecoration(
-                          enabled: !flags[index],
-                          filled: flags[index],
-                          fillColor: colores[index],
+                          // enabled: _isEnabled,
+                          // filled: true,
+                          // fillColor: fillColor,
                           border: OutlineInputBorder(),
                           hintText: 'Ingrese su respuesta'))),
+              Visibility(
+                visible: visible,
+                child: Text("prueba"),
+              ),
               Container(
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.only(left: 30),
@@ -121,30 +105,11 @@ class _RepasoViewState extends State<RepasoView> {
                       constraints:
                           BoxConstraints.tightFor(height: 50, width: 210),
                       child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              if (respuestas[index]
-                                  .text
-                                  .toString()
-                                  .isNotEmpty) {
-                                flags[index] = true;
-                                if (respuestas[index].text.toLowerCase() ==
-                                    listaShuffle[index]
-                                        .description
-                                        .toString()
-                                        .toLowerCase()) {
-                                  colores[index] = Colors.green;
-                                  // print("RESPUESTA CORRECTA");
-                                } else {
-                                  colores[index] = Colors.red;
-                                  // print("RESPUESTA INCORRECTA");
-                                }
-                              }
-                              if (index == listaShuffle.length - 1) {
-                                print("ultimo");
-                              }
-                            });
-                          },
+                          onPressed: () => {
+                                print(respuestas[index].text),
+                                checarRespuesta(respuestas[index].text, index,
+                                    listaShuffle),
+                              },
                           child: Text("Comprobar respuesta",
                               textAlign: TextAlign.center,
                               style: TextStyle(fontSize: 17)))))
@@ -156,100 +121,14 @@ class _RepasoViewState extends State<RepasoView> {
   }
 }
 
-// void checarRespuesta(
-//     String respuesta, int index, List<dynamic> lista, Color color) {
-//   if (respuesta.toLowerCase() ==
-//       lista[index].description.toString().toLowerCase()) {
-//     color = Colors.green;
-//     print("RESPUESTA CORRECTA");
-//   } else {
-//     color = Colors.red;
-//     print("RESPUESTA INCORRECTA");
-//   }
-// }
-
-// class RepasoPageView extends StatelessWidget {
-//   final List lista;
-
-//   const RepasoPageView({
-//     Key? key,
-//     required this.lista,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final _screenZise = MediaQuery.of(context).size.height;
-//     List listaShuffle = new List.from(lista);
-//     shuffle(listaShuffle);
-
-//     var visible = false;
-
-//     return Container(
-//       height: _screenZise * 0.8,
-//       padding: EdgeInsets.all(0),
-//       child: PageView.builder(
-//         physics: BouncingScrollPhysics(),
-//         itemCount: listaShuffle.length,
-//         itemBuilder: (context, index) {
-//           return Column(
-//             children: [
-//               Container(
-//                 decoration: BoxDecoration(
-//                     borderRadius: BorderRadius.circular(20),
-//                     border: Border.all(width: 2, color: Color(0xFF303030))),
-//                 child: ClipRRect(
-//                   borderRadius: BorderRadius.circular(20),
-//                   child: Image(
-//                     image: AssetImage(listaShuffle[index].imagePath),
-//                     height: 300,
-//                     fit: BoxFit.fill,
-//                   ),
-//                 ),
-//               ),
-//               Container(
-//                 padding: EdgeInsets.only(top: 30),
-//                 child: Text(
-//                   "¿A que palabra pertenece esta seña?",
-//                   textAlign: TextAlign.center,
-//                   style: TextStyle(fontSize: 24),
-//                 ),
-//               ),
-//               Container(
-//                   padding: EdgeInsets.all(30),
-//                   child: TextField(
-//                       controller: respuestas[index],
-//                       decoration: InputDecoration(
-//                           // enabled: _isEnabled,
-//                           // filled: true,
-//                           // fillColor: fillColor,
-//                           border: OutlineInputBorder(),
-//                           hintText: 'Ingrese su respuesta'))),
-//               Visibility(
-//                 visible: visible,
-//                 child: Text("prueba"),
-//               ),
-//               Container(
-//                   alignment: Alignment.centerLeft,
-//                   padding: EdgeInsets.only(left: 30),
-//                   child: ConstrainedBox(
-//                       constraints:
-//                           BoxConstraints.tightFor(height: 50, width: 210),
-//                       child: ElevatedButton(
-//                           onPressed: () => {
-//                                 print(respuestas[index].text),
-//                                 checarRespuesta(respuestas[index].text, index,
-//                                     listaShuffle),
-//                               },
-//                           child: Text("Comprobar respuesta",
-//                               textAlign: TextAlign.center,
-//                               style: TextStyle(fontSize: 17)))))
-//             ],
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }
+void checarRespuesta(String respuesta, int index, List<dynamic> lista) {
+  if (respuesta.toLowerCase() ==
+      lista[index].description.toString().toLowerCase()) {
+    print("RESPUESTA CORRECTA");
+  } else {
+    print("RESPUESTA INCORRECTA");
+  }
+}
 
 TextField caja(int index) {
   TextField caja = new TextField(
