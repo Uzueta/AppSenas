@@ -12,7 +12,11 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
+      theme: ThemeData(fontFamily: 'Signika'),
+      darkTheme: ThemeData(brightness: Brightness.dark, fontFamily: 'Signika'
+          /* dark theme settings */
+          ),
+      themeMode: ThemeMode.dark,
       title: 'Material App',
       initialRoute: 'home_screen',
       routes: {

@@ -21,6 +21,7 @@ environment:
     sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+    google_fonts: ^2.1.0
     flutter:
         sdk: flutter
 
@@ -66,15 +67,16 @@ flutter:
     # "family" key with the font family name, and a "fonts" key with a
     # list giving the asset and other descriptors for the font. For
     # example:
-    # fonts:
-    #   - family: Schyler
-    #     fonts:
+    fonts:
+      - family: Signika
+        fonts:
+            - asset: assets/fonts/Signika-VariableFont_wght.ttf
     #       - asset: fonts/Schyler-Regular.ttf
     #       - asset: fonts/Schyler-Italic.ttf
-    #         style: italic
-    #   - family: Trajan Pro
-    #     fonts:
-    #       - asset: fonts/TrajanPro.ttf
+            # style: italic
+      - family: Fredoka
+        fonts:
+          - asset: assets/fonts/FredokaOne-Regular.ttf
     #       - asset: fonts/TrajanPro_Bold.ttf
     #         weight: 700
     #

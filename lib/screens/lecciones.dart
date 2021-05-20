@@ -1,5 +1,6 @@
 import 'package:disenos/models/lecciones_listas.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PantallaLeccion extends StatelessWidget {
   final String titulo;
@@ -50,7 +51,7 @@ class PantallaLeccion extends StatelessWidget {
               child: Text(
                 "Observe la imagen y ponga atención a la posición de los dedos, deslice para pasar a la siguiente imagen.",
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18, fontFamily: 'Verdana'),
+                style: TextStyle(fontSize: 22, fontFamily: 'Signika'),
               )),
           Leccion(
             lista: lista,
@@ -75,7 +76,7 @@ class Leccion extends StatelessWidget {
   Widget build(BuildContext context) {
     final _screenZise = MediaQuery.of(context).size.height;
     return Container(
-      height: _screenZise * 0.5,
+      height: _screenZise * 0.7,
       padding: EdgeInsets.only(top: 0, bottom: 30, left: 30, right: 30),
       child: PageView.builder(
         physics: BouncingScrollPhysics(),
@@ -91,16 +92,17 @@ class Leccion extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   child: Image(
                     image: AssetImage(lista[index].imagePath),
-                    height: 200,
+                    height: 300,
                     fit: BoxFit.fill,
                   ),
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(30),
+                padding: EdgeInsets.all(50),
                 child: Text(
                   lista[index].description,
                   textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 40, fontFamily: 'Fredoka'),
                 ),
               )
             ],
