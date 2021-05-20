@@ -25,9 +25,8 @@ class PantallaLeccion extends StatelessWidget {
       case 4:
         lista = listas.meses;
         break;
-      //Lista de colores
       case 5:
-        lista = listas.imagenes;
+        lista = listas.colores;
         break;
       case 6:
         lista = listas.tiempos;

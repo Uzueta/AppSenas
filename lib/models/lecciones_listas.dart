@@ -152,7 +152,28 @@ class LeccionesLista {
         imagePath: 'assets/animales 2/rinoceronte.png',
         description: 'Rinoceronte'),
     Imagenes(imagePath: 'assets/animales 2/vaca.png', description: 'Vaca'),
-    Imagenes(imagePath: 'assets/animales 2/vibora.png', description: 'Vibora'),
+    Imagenes(imagePath: 'assets/animales 2/vibora.png', description: 'Víbora'),
+  ];
+
+  List<Imagenes> colores = [
+    Imagenes(imagePath: 'assets/colores/color.png', description: 'Color'),
+    Imagenes(imagePath: 'assets/colores/amarillo.png', description: 'Amarillo'),
+    Imagenes(imagePath: 'assets/colores/azul.png', description: 'Azul'),
+    Imagenes(imagePath: 'assets/colores/blanco.png', description: 'Blanco'),
+    Imagenes(imagePath: 'assets/colores/cafe.png', description: 'Café'),
+    Imagenes(imagePath: 'assets/colores/claro.png', description: 'Claro'),
+    Imagenes(imagePath: 'assets/colores/gris.png', description: 'Gris'),
+    Imagenes(imagePath: 'assets/colores/morado.png', description: 'Morado'),
+    Imagenes(imagePath: 'assets/colores/naranja.png', description: 'Naranja'),
+    Imagenes(imagePath: 'assets/colores/negro.png', description: 'Negro'),
+    Imagenes(imagePath: 'assets/colores/oro.png', description: 'Oro'),
+    Imagenes(imagePath: 'assets/colores/plata.png', description: 'Plata'),
+    Imagenes(imagePath: 'assets/colores/rojo1.png', description: 'Rojo'),
+    Imagenes(
+        imagePath: 'assets/colores/rojo2.png',
+        description: 'Rojo (alternativa)'),
+    Imagenes(imagePath: 'assets/colores/rosa.png', description: 'Rosa'),
+    Imagenes(imagePath: 'assets/colores/verde.png', description: 'Verde'),
   ];
 }
 
