@@ -53,6 +53,7 @@ flutter:
         - assets/animales1/
         - assets/animales 2/
         - assets/colores/
+        - assets/expresiones/
     #   - images/a_dot_ham.jpeg
 
     # An image asset can refer to one or more resolution-specific "variants", see
@@ -67,15 +68,15 @@ flutter:
     # list giving the asset and other descriptors for the font. For
     # example:
     fonts:
-      - family: Signika
-        fonts:
-            - asset: assets/fonts/Signika-VariableFont_wght.ttf
-    #       - asset: fonts/Schyler-Regular.ttf
-    #       - asset: fonts/Schyler-Italic.ttf
-            # style: italic
-      - family: Fredoka
-        fonts:
-          - asset: assets/fonts/FredokaOne-Regular.ttf
+        - family: Signika
+          fonts:
+              - asset: assets/fonts/Signika-VariableFont_wght.ttf
+        #       - asset: fonts/Schyler-Regular.ttf
+        #       - asset: fonts/Schyler-Italic.ttf
+        # style: italic
+        - family: Fredoka
+          fonts:
+              - asset: assets/fonts/FredokaOne-Regular.ttf
     #       - asset: fonts/TrajanPro_Bold.ttf
     #         weight: 700
     #

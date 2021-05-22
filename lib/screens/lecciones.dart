@@ -39,6 +39,11 @@ class PantallaLeccion extends StatelessWidget {
       case 8:
         lista = listas.animales2;
         break;
+      case 9:
+        lista = listas.expresiones;
+        break;
+      case 10:
+        break;
       default:
         lista = listas.imagenes;
     }

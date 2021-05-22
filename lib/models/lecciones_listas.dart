@@ -175,6 +175,24 @@ class LeccionesLista {
     Imagenes(imagePath: 'assets/colores/rosa.png', description: 'Rosa'),
     Imagenes(imagePath: 'assets/colores/verde.png', description: 'Verde'),
   ];
+
+  List<Imagenes> expresiones = [
+    Imagenes(
+        imagePath: 'assets/expresiones/a veces.png', description: 'A veces'),
+    Imagenes(
+        imagePath: 'assets/expresiones/diferente.png',
+        description: 'Diferente'),
+    Imagenes(
+        imagePath: 'assets/expresiones/no entiendo.png',
+        description: 'No entiendo'),
+    Imagenes(imagePath: 'assets/expresiones/nunca.png', description: 'Nunca'),
+    Imagenes(imagePath: 'assets/expresiones/perdon.png', description: 'Perdón'),
+    Imagenes(
+        imagePath: 'assets/expresiones/permiso.png', description: 'Permiso'),
+    Imagenes(imagePath: 'assets/expresiones/puedo.png', description: 'Puedo'),
+    Imagenes(
+        imagePath: 'assets/expresiones/siempre.png', description: 'Siempre'),
+  ];
 }
 
 class Imagenes {

@@ -63,6 +63,20 @@ class CardTable extends StatelessWidget {
             titulo: 'Animales 2',
           ),
         ),
+        buildTableRow(
+          'Expresiones',
+          'assets/expresiones.png',
+          PantallaLeccion(
+            id: 9,
+            titulo: 'Expresiones',
+          ),
+          'Próximamente',
+          'assets/proximamente.png',
+          PantallaLeccion(
+            id: 10,
+            titulo: 'Próximamente',
+          ),
+        ),
       ],
     );
   }

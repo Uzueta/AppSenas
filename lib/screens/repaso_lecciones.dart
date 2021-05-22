@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:disenos/models/opciones.dart';
+import 'package:disenos/screens/lecciones.dart';
 import 'package:flutter/material.dart';
 
 var puntaje;
@@ -91,6 +92,7 @@ class _RepasoIndicadorState extends State<RepasoIndicador> {
         itemBuilder: (context, index) {
           return Column(
             children: [
+              _instruccion(index),
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -177,6 +179,21 @@ class _RepasoIndicadorState extends State<RepasoIndicador> {
         },
       ),
     );
+  }
+
+  Container _instruccion(int index) {
+    if (index == 0) {
+      return Container(
+        padding: EdgeInsets.all(20),
+        child: Text(
+          "Desliza hacia abajo para ver la siguientes preguntas",
+          style: TextStyle(fontSize: 24),
+          textAlign: TextAlign.justify,
+        ),
+      );
+    } else {
+      return Container(child: Text(""));
+    }
   }
 }
 
@@ -435,7 +452,8 @@ class _TilesState extends State<Tiles> {
                 constraints: BoxConstraints.tightFor(height: 40, width: 120),
                 child: ElevatedButton(
                     onPressed: () => {
-                          _mostrarAlerta(context, "Puntaje", puntaje),
+                          _mostrarAlerta(
+                              context, "Puntaje", puntaje, lista.length),
                         },
                     child: Text("Continuar", style: TextStyle(fontSize: 17))))),
       ),
@@ -443,7 +461,8 @@ class _TilesState extends State<Tiles> {
   }
 }
 
-void _mostrarAlerta(BuildContext context, String titulo, int puntaje) {
+void _mostrarAlerta(
+    BuildContext context, String titulo, int puntaje, int puntajeMaximo) {
   showDialog(
     context: context,
     barrierDismissible: true,
@@ -456,8 +475,9 @@ void _mostrarAlerta(BuildContext context, String titulo, int puntaje) {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             puntaje > 1
-                ? Text('¡Tuviste un total de $puntaje puntos!')
-                : Text('¡Tuviste un total de $puntaje punto!')
+                ? Text(
+                    '¡Tuviste un total de $puntaje puntos de $puntajeMaximo!')
+                : Text('¡Tuviste un total de $puntaje punto de $puntajeMaximo!')
             // FlutterLogo(size: 100.0)
           ],
         ),
@@ -528,14 +548,14 @@ class RepasoPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _screenZise = MediaQuery.of(context).size.height;
+    final _screenSize = MediaQuery.of(context).size.height;
     List listaShuffle = new List.from(lista);
     shuffle(listaShuffle);
 
     var visible = false;
 
     return Container(
-      height: _screenZise * 0.8,
+      height: _screenSize * 0.8,
       padding: EdgeInsets.all(0),
       child: PageView.builder(
         physics: BouncingScrollPhysics(),
