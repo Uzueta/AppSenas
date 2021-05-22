@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:disenos/models/opciones.dart';
 import 'package:flutter/material.dart';
 
+var puntaje;
 var respuestas;
 // TextEditingController respuesta = new TextEditingController();
 
@@ -17,7 +18,7 @@ class Repaso extends StatelessWidget {
   Widget build(BuildContext context) {
     respuestas = new List<TextEditingController>.generate(
         lista.length, (i) => new TextEditingController());
-
+    puntaje = 0;
     return Scaffold(
       appBar: AppBar(title: Text("Repaso de ${this.titulo.toLowerCase()}")),
       body: Column(
@@ -57,6 +58,7 @@ class _RepasoIndicadorState extends State<RepasoIndicador> {
   var opciones;
   late List<List<Opciones>> grupoOpciones;
   var tituloOpciones;
+  var boton, enable;
   @override
   void initState() {
     super.initState();
@@ -69,19 +71,21 @@ class _RepasoIndicadorState extends State<RepasoIndicador> {
     grupoOpciones = new List<List<Opciones>>.generate(
         listaShuffle.length,
         (i) => new List<Opciones>.generate(
-            4, (i) => new Opciones(subtitulo: "", color: Colors.yellow)));
+            4, (i) => new Opciones(subtitulo: "", color: Color(0x00000000))));
     tituloOpciones = generarOpciones(listaShuffle);
+    boton = new List<bool?>.generate(widget.lista.length, (i) => false);
+    enable = new List<bool?>.generate(widget.lista.length, (i) => true);
   }
 
   @override
   Widget build(BuildContext context) {
-    final _screenZise = MediaQuery.of(context).size.height;
+    final _screenSize = MediaQuery.of(context).size.height;
     // List listaShuffle = new List.from(widget.lista);
-
     return Container(
-      height: _screenZise * 0.8,
+      height: _screenSize * 0.9,
       padding: EdgeInsets.all(0),
       child: PageView.builder(
+        scrollDirection: Axis.vertical,
         physics: BouncingScrollPhysics(),
         itemCount: listaShuffle.length,
         itemBuilder: (context, index) {
@@ -116,6 +120,8 @@ class _RepasoIndicadorState extends State<RepasoIndicador> {
                 opciones: grupoOpciones,
                 tituloOpciones: tituloOpciones,
                 respuesta: listaShuffle[index].description,
+                botonHabilitado: boton,
+                opcionesHabilitadas: enable,
               )
 
               // Container(
@@ -233,6 +239,8 @@ class Tiles extends StatefulWidget {
   final List<dynamic> tituloOpciones;
   final List<dynamic> lista;
   final List<List<Opciones>> opciones;
+  final List<bool?> botonHabilitado;
+  final List<bool?> opcionesHabilitadas;
   Tiles(
       {Key? key,
       required this.lista,
@@ -240,7 +248,9 @@ class Tiles extends StatefulWidget {
       required this.seleccionado,
       required this.opciones,
       required this.tituloOpciones,
-      required this.respuesta})
+      required this.respuesta,
+      required this.botonHabilitado,
+      required this.opcionesHabilitadas})
       : super(key: key);
 
   @override
@@ -248,10 +258,15 @@ class Tiles extends StatefulWidget {
 }
 
 class _TilesState extends State<Tiles> {
+  var boton;
+  var enable;
   @override
   void initState() {
     super.initState();
-
+    // boton = new List<bool?>.generate(widget.lista.length, (i) => false);
+    // enable = new List<bool?>.generate(widget.lista.length, (i) => true);
+    boton = widget.botonHabilitado;
+    enable = widget.opcionesHabilitadas;
     // print(
     //     "1: ${widget.tituloOpciones[widget.index][0]} - 2: ${widget.tituloOpciones[widget.index][1]} - 3: ${widget.tituloOpciones[widget.index][2]} - 4: ${widget.tituloOpciones[widget.index][3]} LA CORRECTA ES: ${widget.respuesta}");
     // print(
@@ -271,117 +286,209 @@ class _TilesState extends State<Tiles> {
   Widget build(BuildContext context) {
     return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
       RadioListTile(
+        // tileColor: Color(0x00000000),
+        tileColor: widget.opciones[widget.index][0].color,
         value: "${widget.tituloOpciones[widget.index][0]}",
         // value: 1,
         groupValue: widget.seleccionado[widget.index],
         title: Text(widget.tituloOpciones[widget.index][0]),
         subtitle: Text(widget.opciones[widget.index][0].subtitulo),
-        onChanged: (val) {
-          print("Radio tile pressed $val");
-          setSelectedRadioTile("$val");
-          setState(() {
-            widget.opciones[widget.index][0].subtitulo = "";
-            widget.opciones[widget.index][1].subtitulo = "";
-            widget.opciones[widget.index][2].subtitulo = "";
-            widget.opciones[widget.index][3].subtitulo = "";
-            if ("$val" == widget.respuesta) {
-              widget.opciones[widget.index][0].subtitulo = "Respuesta correcta";
-              widget.opciones[widget.index][0].color = Colors.green;
-            } else {
-              widget.opciones[widget.index][0].subtitulo =
-                  "Respuesta incorrecta";
-              widget.opciones[widget.index][0].color = Colors.red;
-            }
-          });
-        },
+        onChanged: enable[widget.index]
+            ? (val) {
+                setSelectedRadioTile("$val");
+                setState(() {
+                  boton[widget.index] =
+                      checarUltimo(widget.index, widget.lista.length);
+                  widget.opciones[widget.index][0].subtitulo = "";
+                  widget.opciones[widget.index][1].subtitulo = "";
+                  widget.opciones[widget.index][2].subtitulo = "";
+                  widget.opciones[widget.index][3].subtitulo = "";
+                  if ("$val" == widget.respuesta) {
+                    widget.opciones[widget.index][0].subtitulo =
+                        "Respuesta correcta";
+                    widget.opciones[widget.index][0].color = Colors.green;
+                    puntaje = puntaje + 1;
+                    print(puntaje);
+                  } else {
+                    widget.opciones[widget.index][0].subtitulo =
+                        "Respuesta incorrecta";
+                    widget.opciones[widget.index][0].color = Colors.red;
+                    print(puntaje);
+                  }
+                  enable[widget.index] = false;
+                });
+              }
+            : null,
         activeColor: widget.opciones[widget.index][0].color,
       ),
       RadioListTile(
+        tileColor: widget.opciones[widget.index][1].color,
         value: "${widget.tituloOpciones[widget.index][1]}",
         // value: 2,
         groupValue: widget.seleccionado[widget.index],
         title: Text(widget.tituloOpciones[widget.index][1]),
         subtitle: Text(widget.opciones[widget.index][1].subtitulo),
-        onChanged: (val) {
-          print("Radio tile pressed $val");
-          setSelectedRadioTile("$val");
-          setState(() {
-            widget.opciones[widget.index][0].subtitulo = "";
-            widget.opciones[widget.index][1].subtitulo = "";
-            widget.opciones[widget.index][2].subtitulo = "";
-            widget.opciones[widget.index][3].subtitulo = "";
-            if ("$val" == widget.respuesta) {
-              widget.opciones[widget.index][1].subtitulo = "Respuesta correcta";
-              widget.opciones[widget.index][1].color = Colors.green;
-            } else {
-              widget.opciones[widget.index][1].subtitulo =
-                  "Respuesta incorrecta";
-              widget.opciones[widget.index][1].color = Colors.red;
-            }
-          });
-        },
+        onChanged: enable[widget.index]
+            ? (val) {
+                setSelectedRadioTile("$val");
+                setState(() {
+                  boton[widget.index] =
+                      checarUltimo(widget.index, widget.lista.length);
+                  widget.opciones[widget.index][0].subtitulo = "";
+                  widget.opciones[widget.index][1].subtitulo = "";
+                  widget.opciones[widget.index][2].subtitulo = "";
+                  widget.opciones[widget.index][3].subtitulo = "";
+                  if ("$val" == widget.respuesta) {
+                    widget.opciones[widget.index][1].subtitulo =
+                        "Respuesta correcta";
+                    puntaje = puntaje + 1;
+                    print(puntaje);
+                    widget.opciones[widget.index][1].color = Colors.green;
+                  } else {
+                    widget.opciones[widget.index][1].subtitulo =
+                        "Respuesta incorrecta";
+                    widget.opciones[widget.index][1].color = Colors.red;
+                    print(puntaje);
+                  }
+                  enable[widget.index] = false;
+                });
+              }
+            : null,
         activeColor: widget.opciones[widget.index][1].color,
-        // secondary: OutlinedButton(
-        //   child: Text("Hi"),
-        //   onPressed: () {
-        //     print("Hello");
-        //   },
-        // ),
-        // selected: false,
       ),
       RadioListTile(
+        tileColor: widget.opciones[widget.index][2].color,
         // value: 3,
         value: "${widget.tituloOpciones[widget.index][2]}",
         groupValue: widget.seleccionado[widget.index],
         title: Text(widget.tituloOpciones[widget.index][2]),
         subtitle: Text(widget.opciones[widget.index][2].subtitulo),
-        onChanged: (val) {
-          print("Radio tile pressed $val");
-          setSelectedRadioTile("$val");
-          setState(() {
-            widget.opciones[widget.index][0].subtitulo = "";
-            widget.opciones[widget.index][1].subtitulo = "";
-            widget.opciones[widget.index][2].subtitulo = "";
-            widget.opciones[widget.index][3].subtitulo = "";
-            if ("$val" == widget.respuesta) {
-              widget.opciones[widget.index][2].subtitulo = "Respuesta correcta";
-              widget.opciones[widget.index][2].color = Colors.green;
-            } else {
-              widget.opciones[widget.index][2].subtitulo =
-                  "Respuesta incorrecta";
-              widget.opciones[widget.index][2].color = Colors.red;
-            }
-          });
-        },
+        onChanged: enable[widget.index]
+            ? (val) {
+                setSelectedRadioTile("$val");
+                setState(() {
+                  boton[widget.index] =
+                      checarUltimo(widget.index, widget.lista.length);
+                  widget.opciones[widget.index][0].subtitulo = "";
+                  widget.opciones[widget.index][1].subtitulo = "";
+                  widget.opciones[widget.index][2].subtitulo = "";
+                  widget.opciones[widget.index][3].subtitulo = "";
+                  if ("$val" == widget.respuesta) {
+                    widget.opciones[widget.index][2].subtitulo =
+                        "Respuesta correcta";
+                    puntaje = puntaje + 1;
+                    print(puntaje);
+                    widget.opciones[widget.index][2].color = Colors.green;
+                  } else {
+                    widget.opciones[widget.index][2].subtitulo =
+                        "Respuesta incorrecta";
+                    widget.opciones[widget.index][2].color = Colors.red;
+                    print(puntaje);
+                  }
+                  enable[widget.index] = false;
+                });
+              }
+            : null,
         activeColor: widget.opciones[widget.index][2].color,
       ),
       RadioListTile(
+        tileColor: widget.opciones[widget.index][3].color,
         // value: 4,
         value: "${widget.tituloOpciones[widget.index][3]}",
         groupValue: widget.seleccionado[widget.index],
         title: Text(widget.tituloOpciones[widget.index][3]),
         subtitle: Text(widget.opciones[widget.index][3].subtitulo),
-        onChanged: (val) {
-          print("Radio tile pressed $val");
-          setSelectedRadioTile("$val");
-          setState(() {
-            widget.opciones[widget.index][0].subtitulo = "";
-            widget.opciones[widget.index][1].subtitulo = "";
-            widget.opciones[widget.index][2].subtitulo = "";
-            widget.opciones[widget.index][3].subtitulo = "";
-            if ("$val" == widget.respuesta) {
-              widget.opciones[widget.index][3].subtitulo = "Respuesta correcta";
-              widget.opciones[widget.index][3].color = Colors.green;
-            } else {
-              widget.opciones[widget.index][3].subtitulo =
-                  "Respuesta incorrecta";
-              widget.opciones[widget.index][3].color = Colors.red;
-            }
-          });
-        },
+        onChanged: enable[widget.index]
+            ? (val) {
+                setSelectedRadioTile("$val");
+                setState(() {
+                  boton[widget.index] =
+                      checarUltimo(widget.index, widget.lista.length);
+                  widget.opciones[widget.index][0].subtitulo = "";
+                  widget.opciones[widget.index][1].subtitulo = "";
+                  widget.opciones[widget.index][2].subtitulo = "";
+                  widget.opciones[widget.index][3].subtitulo = "";
+                  if ("$val" == widget.respuesta) {
+                    widget.opciones[widget.index][3].subtitulo =
+                        "Respuesta correcta";
+                    puntaje = puntaje + 1;
+                    print(puntaje);
+                    widget.opciones[widget.index][3].color = Colors.green;
+                  } else {
+                    widget.opciones[widget.index][3].subtitulo =
+                        "Respuesta incorrecta";
+                    widget.opciones[widget.index][3].color = Colors.red;
+                    print(puntaje);
+                  }
+                  enable[widget.index] = false;
+                });
+              }
+            : null,
+        // onChanged: null,
         activeColor: widget.opciones[widget.index][3].color,
       ),
+      Visibility(
+        visible: boton[widget.index],
+        child: Container(
+            padding: EdgeInsets.only(top: 20),
+            child: ConstrainedBox(
+                constraints: BoxConstraints.tightFor(height: 40, width: 120),
+                child: ElevatedButton(
+                    onPressed: () => {
+                          _mostrarAlerta(context, "Puntaje", puntaje),
+                        },
+                    child: Text("Continuar", style: TextStyle(fontSize: 17))))),
+      ),
     ]);
+  }
+}
+
+void _mostrarAlerta(BuildContext context, String titulo, int puntaje) {
+  showDialog(
+    context: context,
+    barrierDismissible: true,
+    builder: (context) {
+      return AlertDialog(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        title: Text(titulo),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            puntaje > 1
+                ? Text('¡Tuviste un total de $puntaje puntos!')
+                : Text('¡Tuviste un total de $puntaje punto!')
+            // FlutterLogo(size: 100.0)
+          ],
+        ),
+        actions: <Widget>[
+          Container(
+            padding: EdgeInsets.only(right: 20),
+            child: TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text('Regresar')),
+          ),
+          Container(
+            padding: EdgeInsets.only(right: 10),
+            child: TextButton(
+                onPressed: () {
+                  int count = 0;
+                  Navigator.of(context).popUntil((_) => count++ >= 3);
+                },
+                child: Text('Volver al inicio')),
+          )
+        ],
+      );
+    },
+  );
+}
+
+bool checarUltimo(int index, int tam) {
+  if (index == tam - 1) {
+    print("ultimo");
+    return true;
+  } else {
+    return false;
   }
 }
 

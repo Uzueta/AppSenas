@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:disenos/screens/lecciones.dart';
-import 'package:disenos/screens/radios.dart';
 import 'package:flutter/material.dart';
 
 class CardTable extends StatelessWidget {

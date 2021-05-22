@@ -1,6 +1,7 @@
 import 'package:disenos/screens/basic_design.dart';
 import 'package:disenos/screens/home_screen.dart';
 import 'package:disenos/screens/scroll_design.dart';
+import 'package:disenos/widgets/card_table.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
       routes: {
         'basic_design': (_) => BasicDesignScreen(),
         'scroll_screen': (_) => ScrollScreen(),
-        'home_screen': (_) => HomeScreen()
+        'home_screen': (_) => HomeScreen(),
+        '/card_table': (_) => CardTable()
       },
     );
   }
